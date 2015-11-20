@@ -9,12 +9,16 @@ from sys import stderr
 stderr.write(%r)
 '''
 
+DOC = __doc__
+
 
 class Install(orig_install):
-    """default semantics for install.extra_path cause all installed modules to
-    go into a directory whose name is equal to the contents of the .pth file.
+    """
+    default semantics for install.extra_path cause all installed modules to go
+    into a directory whose name is equal to the contents of the .pth file.
     
-    I undo just that specific behavior here.
+    All that was necessary was to remove that one behavior to get what you'd
+    generally want.
     """
     def initialize_options(self):
         orig_install.initialize_options(self)
@@ -46,9 +50,25 @@ class Install(orig_install):
 
 def main():
     """the entry point"""
+    from textwrap import dedent
+
     setup(
         name='ohhi',
-        version='3!0',
+        version='4!0',
+        url="https://github.com/bukzor/ohhi",
+        license="MIT",
+        author="Buck Evan",
+        author_email="buck.2019@gmail.com",
+        description=DOC,
+        long_description=dedent(Install.__doc__),
+        zip_safe=False,
+        classifiers=[
+            'Programming Language :: Python :: 2.6',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.3',
+            'Programming Language :: Python :: 3.4',
+            'License :: OSI Approved :: MIT License',
+        ],
         cmdclass={
             'install': Install,
         },
