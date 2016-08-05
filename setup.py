@@ -16,7 +16,7 @@ class Install(orig_install):
     """
     default semantics for install.extra_path cause all installed modules to go
     into a directory whose name is equal to the contents of the .pth file.
-    
+
     All that was necessary was to remove that one behavior to get what you'd
     generally want.
     """
@@ -24,7 +24,7 @@ class Install(orig_install):
         orig_install.initialize_options(self)
         name = self.distribution.metadata.name
 
-        contents = PTH % open('ohhi.dat').read()
+        contents = PTH % open('ohai.dat').read()
         contents = 'import sys; exec(%r)\n' % contents
         self.extra_path = (name, contents)
 
@@ -53,9 +53,9 @@ def main():
     from textwrap import dedent
 
     setup(
-        name='ohhi',
-        version='4!0',
-        url="https://github.com/bukzor/ohhi",
+        name='ohai',
+        version='1!0',
+        url="https://github.com/bukzor/ohai",
         license="MIT",
         author="Buck Evan",
         author_email="buck.2019@gmail.com",
